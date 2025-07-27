@@ -1,0 +1,20 @@
+[build]
+  # Since we're deploying the HTML version, no build process needed
+  publish = "."
+  
+[build.environment]
+  # No build environment needed for static HTML
+
+[[redirects]]
+  # Redirect all routes to functional-app.html for SPA-like behavior
+  from = "/*"
+  to = "/functional-app.html"
+  status = 200
+  
+[[headers]]
+  # Add CORS headers for API calls
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"

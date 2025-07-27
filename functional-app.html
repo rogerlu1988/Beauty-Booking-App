@@ -7,27 +7,145 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Mobile-first responsive improvements */
+        @media (max-width: 640px) {
+            .mobile-padding { padding: 1rem; }
+            .mobile-text { font-size: 0.875rem; }
+            .mobile-button { padding: 0.75rem 1rem; font-size: 0.875rem; }
+        }
+    </style>
 </head>
 <body class="min-h-screen bg-gray-50">
     <!-- Header -->
     <header class="bg-white shadow-sm border-b">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-6">
-                <h1 class="text-3xl font-bold text-gray-900">Beauty Booking App</h1>
-                <nav class="space-x-8">
-                    <a href="#" class="text-gray-600 hover:text-gray-900" onclick="showSection('register')">Register</a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900" onclick="showSection('booking')">Book Appointment</a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900" onclick="showSection('analytics')">Analytics</a>
+            <div class="flex flex-col sm:flex-row justify-between items-center py-4 sm:py-6">
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-0">Beauty Booking App</h1>
+                <nav class="flex flex-wrap justify-center sm:space-x-8 space-x-4">
+                    <a href="#" class="text-gray-600 hover:text-gray-900 mobile-text" onclick="showSection('help')">Help</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900 mobile-text" onclick="showSection('register')">Register</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900 mobile-text" onclick="showSection('booking')">Book Appointment</a>
+                    <a href="#" class="text-gray-600 hover:text-gray-900 mobile-text" onclick="showSection('analytics')">Analytics</a>
                 </nav>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <main class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <!-- Help Section -->
+        <div id="help-section" class="">
+            <!-- Hero Section -->
+            <div class="bg-gradient-to-r from-pink-300 to-purple-400 text-white py-10 px-4 rounded-xl mb-8">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="text-3xl sm:text-4xl font-bold mb-4">Beauty & Wellness Service Marketplace</h1>
+                    <p class="text-lg">Book mobile or in-salon services with top-rated experts near you.</p>
+                </div>
+            </div>
+
+            <!-- User Manual -->
+            <div class="bg-white p-6 rounded-xl shadow-lg mb-8">
+                <h2 class="text-2xl font-semibold mb-6 text-center">📖 User Manual</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-lg font-bold mb-4 text-purple-600">🚀 Getting Started</h3>
+                        <ol class="space-y-2 list-decimal list-inside text-sm">
+                            <li><strong>Register:</strong> Click "Register" to create your account</li>
+                            <li><strong>Choose Service:</strong> Select from our beauty services</li>
+                            <li><strong>Pick Date & Time:</strong> Choose your preferred appointment slot</li>
+                            <li><strong>Book & Pay:</strong> Secure payment through Stripe</li>
+                            <li><strong>Enjoy:</strong> Get ready for your beauty treatment!</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold mb-4 text-purple-600">💡 Tips for Best Experience</h3>
+                        <ul class="space-y-2 list-disc list-inside text-sm">
+                            <li>Book appointments at least 24 hours in advance</li>
+                            <li>Check your email for booking confirmations</li>
+                            <li>Arrive 5-10 minutes early for your appointment</li>
+                            <li>Cancel or reschedule at least 2 hours before</li>
+                            <li>Rate your experience to help others</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Section -->
+            <div class="bg-white p-6 rounded-xl shadow-lg mb-8">
+                <h2 class="text-2xl font-semibold mb-6 text-center">Browse Categories</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                    <div class="bg-pink-100 p-4 rounded-xl text-center mobile-text">Hair</div>
+                    <div class="bg-pink-100 p-4 rounded-xl text-center mobile-text">Nails</div>
+                    <div class="bg-pink-100 p-4 rounded-xl text-center mobile-text">Skin & Face</div>
+                    <div class="bg-pink-100 p-4 rounded-xl text-center mobile-text">Eyes & Brows</div>
+                    <div class="bg-pink-100 p-4 rounded-xl text-center mobile-text">Body & Massage</div>
+                    <div class="bg-pink-100 p-4 rounded-xl text-center mobile-text">Cosmetic Enhancements</div>
+                    <div class="bg-pink-100 p-4 rounded-xl text-center mobile-text">Hair Removal</div>
+                    <div class="bg-pink-100 p-4 rounded-xl text-center mobile-text">Bundles & Packages</div>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="bg-gray-50 p-6 rounded-xl mb-8">
+                <h2 class="text-2xl font-semibold mb-6 text-center">How It Works</h2>
+                <ol class="space-y-4 list-decimal list-inside max-w-4xl mx-auto">
+                    <li class="mobile-text">Pick a category (e.g. Hair, Nails)</li>
+                    <li class="mobile-text">Apply filters: price, distance, availability</li>
+                    <li class="mobile-text">Compare expert profiles and book your service</li>
+                    <li class="mobile-text">Pay securely and get reminders</li>
+                    <li class="mobile-text">Rate and tip your expert</li>
+                </ol>
+            </div>
+
+            <!-- Featured Services List -->
+            <div class="bg-white p-6 rounded-xl shadow-lg mb-8">
+                <h2 class="text-2xl font-semibold mb-6 text-center">Popular Services</h2>
+                <div class="grid md:grid-cols-2 gap-6 text-sm">
+                    <div>
+                        <h3 class="font-bold mb-2 text-purple-600">Facial & Skin Care</h3>
+                        <ul class="list-disc list-inside mobile-text">
+                            <li>Deep Cleanse, Anti-Aging, Hydrafacial</li>
+                            <li>Chemical Peel, Microdermabrasion</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2 text-purple-600">Hair Services</h3>
+                        <ul class="list-disc list-inside mobile-text">
+                            <li>Cut, Styling, Blowout, Bridal</li>
+                            <li>Color, Highlights, Extensions</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2 text-purple-600">Massage & Body</h3>
+                        <ul class="list-disc list-inside mobile-text">
+                            <li>Swedish, Deep Tissue, Prenatal</li>
+                            <li>Body Scrubs, Wraps, Tanning</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2 text-purple-600">Eyes, Brows & More</h3>
+                        <ul class="list-disc list-inside mobile-text">
+                            <li>Microblading, Lash Lift, Tinting</li>
+                            <li>Makeup, Waxing, Laser Hair Removal</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="bg-purple-100 p-6 rounded-xl text-center mb-8">
+                <h2 class="text-2xl font-semibold mb-4">Ready to Book?</h2>
+                <p class="mb-6 mobile-text">Discover amazing experts near you – at home or in salon.</p>
+                <button class="bg-purple-600 text-white px-6 py-2 rounded-xl hover:bg-purple-700 transition mobile-button" onclick="showSection('register')">Get Started</button>
+            </div>
+        </div>
         <!-- Registration Form -->
-        <div id="register-section" class="max-w-lg mx-auto p-6 bg-white shadow-lg rounded-xl">
-            <h2 class="text-2xl font-bold mb-4">Create Account</h2>
+        <div id="register-section" class="hidden max-w-lg mx-auto p-4 sm:p-6 bg-white shadow-lg rounded-xl mobile-padding">
+            <h2 class="text-xl sm:text-2xl font-bold mb-4">Create Account</h2>
             <form id="register-form" class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
@@ -41,15 +159,15 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
                     <input type="password" name="password" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter password">
                 </div>
-                <button type="submit" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200">
+                <button type="submit" class="w-full bg-green-600 text-white py-3 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition duration-200 mobile-button">
                     Create Account
                 </button>
             </form>
         </div>
 
         <!-- Booking Form -->
-        <div id="booking-section" class="hidden max-w-lg mx-auto p-6 bg-white shadow-lg rounded-xl">
-            <h2 class="text-2xl font-bold mb-4">Book an Appointment</h2>
+        <div id="booking-section" class="hidden max-w-lg mx-auto p-4 sm:p-6 bg-white shadow-lg rounded-xl mobile-padding">
+            <h2 class="text-xl sm:text-2xl font-bold mb-4">Book an Appointment</h2>
             <form id="booking-form" class="space-y-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
@@ -88,7 +206,7 @@
                         <option value="4:00 PM">4:00 PM</option>
                     </select>
                 </div>
-                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200">
+                <button type="submit" class="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 mobile-button">
                     Book Appointment
                 </button>
             </form>
@@ -127,6 +245,7 @@
 
         function showSection(section) {
             // Hide all sections
+            document.getElementById('help-section').classList.add('hidden');
             document.getElementById('register-section').classList.add('hidden');
             document.getElementById('booking-section').classList.add('hidden');
             document.getElementById('analytics-section').classList.add('hidden');
@@ -137,6 +256,9 @@
             if (section === 'analytics') {
                 loadAnalytics();
             }
+            
+            // Scroll to top on section change
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function showMessage(text, type = 'success') {
